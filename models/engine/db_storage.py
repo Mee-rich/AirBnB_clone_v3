@@ -35,6 +35,9 @@ class DBStorage:
         )
         if env == 'test':
             Base.metadata.drop_all(self.__engine)
+        
+        Session = scoped_session(sessionmaker(bind=self.__engine))
+        self.__session = Session()
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
@@ -86,6 +89,18 @@ class DBStorage:
         )
 
         self.__session = scoped_session(SessionFactory)()
+
+    def get(self, cls, id):
+        '''A method to retrieve one object'''
+        return self.__session.query(cls).get(id)
+
+    def count(self, cls=None):
+        '''Count the number of objects in storage'''
+        if cls:
+            return self.__session.query(cls).count()
+        else:
+            models = [User, Place, City, Amenity, Review, State]
+            return sum(self.__session.query(model).count() for model in models)
 
     def close(self):
         """This closes the storage engine"""
