@@ -69,7 +69,7 @@ class BaseModel:
         storage.new(self)
         storage.save()
 
-    def to_dict(self):
+    def to_dict(self, include_password=False):
         """creates dictionary of the class  and returns
         Return:
             returns a dictionary of all the key values in __dict__
@@ -81,6 +81,8 @@ class BaseModel:
         
         if "_sa_instance_state" in my_dict:
             del my_dict["_sa_instance_state"]
+        if not include_password and 'password' in my_dict:
+            dictionary.pop('password', None)
         return my_dict
 
     def delete(self):

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 '''This module instantiates an instance of the Storage to be used'''
 
 from os import getenv

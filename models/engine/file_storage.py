@@ -8,6 +8,11 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.user import User
+from models.state import State
+from models.amenity import Amenity
+from hashlib import md5
+
+
 
 class FileStorage():
     """File storage module"""
@@ -54,7 +59,7 @@ class FileStorage():
         content = {}
 
         for key, value in objects.items():
-            content[key] = value.to_dict()
+            content[key] = value.to_dict(include_password=True)
 
         with open(file, 'w', encoding="utf-8") as f:
             f.write(json.dumps(content))
