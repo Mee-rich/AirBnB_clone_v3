@@ -10,15 +10,17 @@ app = Flask(__name__)
 '''The Flask application instance'''
 app.url_map.strict_slashes = False
 
+
 @app.route('/states_list')
 def states_list():
     '''the states list page'''
     all_states = list(storage.all(States.values()))
     all_states.sort(key=lambda x: x.name)
     txt = {
-            'states' : all_states
-            }
+        'states': all_states
+    }
     return render_template('7-states_list.html', **txt)
+
 
 @app.teardown_appcontext
 def flask_teardown(exec):

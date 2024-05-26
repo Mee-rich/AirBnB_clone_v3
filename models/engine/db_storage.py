@@ -34,8 +34,8 @@ class DBStorage:
             pool_pre_ping=True
         )
         if env == 'test':
-            Base.metadata.drop_all(self.__engine)
-        
+            Base.metadata.drop_all(self.__engine)        
+
         Session = scoped_session(sessionmaker(bind=self.__engine))
         self.__session = Session()
 

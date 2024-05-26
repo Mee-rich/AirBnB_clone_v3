@@ -2,7 +2,7 @@
 """ Test .get() and .count() methods
 """
 from models import storage
-from models.amenity import Amenity 
+from models.amenity import Amenity
 
 print("All objects: {}".format(storage.count()))
 print("Amenity objects: {}".format(storage.count(Amenity)))

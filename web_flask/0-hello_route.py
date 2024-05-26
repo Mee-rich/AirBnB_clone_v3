@@ -5,6 +5,7 @@ from flask import Flask
 app = Flask(__name__)
 '''The Flask application instance'''
 
+
 @app.route('/', strict_slashes=False)
 def index():
     '''Home page'''

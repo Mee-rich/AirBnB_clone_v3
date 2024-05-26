@@ -9,6 +9,7 @@ app = Flask(__name__)
 '''The Flask application instance'''
 app.url_map.strict_slashes = False
 
+
 @app.route('/states')
 @app.route('/states/<id>')
 def states(id=None):
@@ -30,11 +31,12 @@ def states(id=None):
             states.sort(key=lambda x: x.name)
             case = 1
         txt = {
-                'states': states,
-                'state': state,
-                'case': case
-                }
+            'states': states,
+            'state': state,
+            'case': case
+        }
         return render_template('9-states.html', **txt)
+
 
 @app.teardown_appcontext
 def flask_teardown(exc):

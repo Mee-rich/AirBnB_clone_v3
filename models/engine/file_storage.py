@@ -14,9 +14,10 @@ from hashlib import md5
 
 
 
+
 class FileStorage():
     """File storage module"""
-    
+
     """Class for storing and retrieving data
     Class Methods:
         all: Returns the object (dictionary object)
@@ -33,7 +34,6 @@ class FileStorage():
     __file_path = "file.json"
     __objects = {}
 
-
     def all(self, cls=None):
         """returns all objects or ojects of a specified class"""
         if cls is None:
@@ -48,8 +48,8 @@ class FileStorage():
 
     def new(self, obj):
         """Adds a new object to storage dictionary"""
-        self.__objects.update( 
-                {obj.to_dict()['__class__'] + '.' + obj.id: obj}
+        self.__objects.update(
+            {obj.to_dict()['__class__'] + '.' + obj.id: obj}
         )
 
     def save(self):
@@ -69,7 +69,8 @@ class FileStorage():
         def is_valid_class(class_name):
             """Check if the class name is valid."""
             # Check if the class name exists in the global namespace
-            return class_name in globals() and isinstance(globals()[class_name], type)
+            return class_name in globals() and isinstance(
+                globals()[class_name], type)
 
         file = FileStorage.__file_path
 
@@ -82,9 +83,11 @@ class FileStorage():
                         class_name = value.get("__class__")
                         if class_name and is_valid_class(class_name):
 
-                            obj_attrs = {k: v for k, v in value.items() if k != "__class__"}
+                            obj_attrs = {
+                                k: v for k, v in value.items() if k != "__class__"}
 
-                            # Create new instance of the class with extracted attributes
+                            # Create new instance of the class with extracted
+                            # attributes
                             obj_instance = globals()[class_name](**obj_attrs)
 
                             # Add the new instance to your storage mechanism
@@ -106,7 +109,7 @@ class FileStorage():
             instance.save()
         else:
             print("** no instance found **")
-            
+
     def delete(self, obj=None):
         """Deletes an object from __objects"""
         if obj is not None:
@@ -125,6 +128,6 @@ class FileStorage():
     def count(self, cls=None):
         '''Counts the number of objects in storage'''
         if cls:
-            return len([obj for obj in self.__objects.values() if isinstance(obj, cls)])
+            return len([obj for obj in self.__objects.values()
+                       if isinstance(obj, cls)])
         return len(self.__objects)
-

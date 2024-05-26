@@ -8,6 +8,7 @@ from models.base_model import BaseModel, Base
 from os import getenv
 from hashlib import md5
 
+
 class User(BaseModel, Base):
     '''user class object'''
     # Note storage type = getenv option
@@ -18,15 +19,14 @@ class User(BaseModel, Base):
         first_name = Column(String(128), nullable=True)
         last_name = Column(String(128), nullable=True)
         places = relationship('Place', backref='user',
-                cascade='all, delete, delete-orphan')
+                              cascade='all, delete, delete-orphan')
         reviews = relationship('Review', backref='user',
-                cascade='all, delete, delete-orphan')
+                               cascade='all, delete, delete-orphan')
     else:
         email = ""
         password = ""
         first_name = ""
         last_name = ""
-
 
     def __init__(self, *args, **kwargs):
         """initializes user"""

@@ -10,7 +10,7 @@ from models.city import City
 
 class State(BaseModel, Base):
     """Represents a state for a MySQL database.
-        
+
         Inherits from SQLAlchemy Base and links to the MySQL table states.
 
         Attributes:
