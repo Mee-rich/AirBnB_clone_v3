@@ -2,10 +2,10 @@
 """ Test .get() and .count() methods
 """
 from models import storage
-from models.amenity import Amenity
+from models.state import State
 
 print("All objects: {}".format(storage.count()))
-print("Amenity objects: {}".format(storage.count(Amenity)))
+print("State objects: {}".format(storage.count(State)))
 
-first_Amenity_id = list(storage.all(Amenity).values())[0].id
-print("First Amenity: {}".format(storage.get(Amenity, first_Amenity_id)))
+first_state_id = list(storage.all(State).values())[0].id
+print("First State: {}".format(storage.get(State, first_state_id)))
