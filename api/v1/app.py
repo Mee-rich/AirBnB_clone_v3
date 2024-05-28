@@ -7,15 +7,6 @@ from flask import Flask, render_template, make_response, jsonify
 from flask import Flask
 from models import storage
 from api.v1.views import app_views
-<<<<<<< HEAD
-from os import environ
-from flask import Flask, render_template, make_response, jsonify
-from flask_cors import CORS
-from flasgger import Swagger
-from flasgger.utils import swag_from
-=======
-fro os import environ
->>>>>>> 2143160 (formatting done)
 
 
 app = Flask(__name__)

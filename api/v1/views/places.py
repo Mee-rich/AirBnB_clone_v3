@@ -82,16 +82,16 @@ def post_place(city_id):
     user = storage.get(User, data['user_id'])
 
 
-OA if not user:
-    abort(404)
+    if not user:
+        abort(404)
 
-OA if 'name' not in request.get_json():
-OA        abort(400, description="Missing name")
-OA
-data["city_id"] = city_id
-OA    instance = Place(**data)
-instance.save()
-return make_response(jsonify(instance.to_dict()), 201)
+    if 'name' not in request.get_json():
+        abort(400, description="Missing name")
+
+    data["city_id"] = city_id
+    instance = Place(**data)
+    instance.save()
+    return make_response(jsonify(instance.to_dict()), 201)
 
 
 @app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
